@@ -17,7 +17,11 @@
         {% endfor %}
         {% csrf_token %}
         {% for item in menu %}
-            <div style="display: flex; width: 100%;" class="check"><input type="checkbox" name="add" id="" value="{{item.id}}"><p>{{item.item}}</p></div>
+        <div style="display: flex; width: 100%; margin-top: 10px;">
+            <input type="checkbox" name="add" id="{{item.id}}" value="{{item.id}}" onclick="document.getElementById('quant{{item.id}}').style.display=(document.getElementById('quant{{item.id}}').style.display == 'none')?'block' :'none'">
+            <p>{{item.item}}</p>
+            <input type="number" name="quant{{item.id}}" id="quant{{item.id}}" style="display: none;" placeholder="Quantity" class="quant">
+        </div>
         {% endfor %}
         <input type="submit" value="Add Items">
     </form>

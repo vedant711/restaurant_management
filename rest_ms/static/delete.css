@@ -38,6 +38,8 @@ form {
 	margin-bottom: 10%;
 }
 
+
+
 input {
 	background-color: #eee;
 	border: none;
@@ -116,4 +118,13 @@ textarea {
 	font-family: 'Montserrat', sans-serif;
     border-radius: 5px;
 
+}
+
+input[type=number] {
+	background-color: #eee;
+	border: none;
+	padding: 0px 5px;
+	margin: 0px 0;
+	width: 50px;
+	margin-left: 20px;
 }

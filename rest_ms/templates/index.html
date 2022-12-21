@@ -15,9 +15,11 @@
     
     <div class="header">
         <p onclick="document.getElementById('add').style.display=(document.getElementById('add').style.display == 'none')?'block' :'none'">Order Items</p>
-        <p id="ad">Add Items</p>
-        <p id="del">Delete Items</p>
+        <!-- <p id="ad">Add Items</p> -->
+        <p id="del">Edit Items</p>
         <p id="bil">Total Bill</p>
+        <!-- <p id="edi">Edit Items</p> -->
+
         
         <p onclick="document.getElementById('menu').style.display=(document.getElementById('menu').style.display == 'none')?'block' :'none'">Menu</p>
         <p id="feed">Feedback</p>
@@ -70,16 +72,6 @@
             document.getElementById('formad').style.display='none'
             document.getElementById('bill').style.display='none'
         }
-        document.getElementById('ad').onclick = () => {
-            if (document.getElementById('formad').style.display=='none') {
-            document.getElementById('formad').style.display='block'
-            } else {
-                document.getElementById('formad').style.display='none'
-            }
-            document.getElementById('delete').style.display='none'
-            document.getElementById('feedback').style.display='none'
-            document.getElementById('bill').style.display='none'
-        }
 
         document.getElementById('bil').onclick = () => {
             if (document.getElementById('bill').style.display=='none') {
@@ -91,7 +83,7 @@
             }
             document.getElementById('delete').style.display='none'
             document.getElementById('feedback').style.display='none'
-            document.getElementById('formads').style.display='none'
+            document.getElementById('formad').style.display='none'
         }
     </script>
     
@@ -106,12 +98,24 @@
 
         <form action="/add" method="post" style="display:none;" id="add">
             {% csrf_token %}
-            <input type="number" name="table" id="" placeholder="Enter Table Number">
+            <input type="number" name="table" id="" placeholder="Enter Table Number" class="input">
             {% for item in menu %}
-                <div style="display: flex; width: 100%;"><input type="checkbox" name="items" id="" value="{{item.id}}"><p>{{item.item}}</p></div>
+                <div style="display: flex; width: 100%; margin-top: 10px;">
+                    <input type="checkbox" name="items" id="{{item.id}}" value="{{item.id}}" onclick="document.getElementById('quant{{item.id}}').style.display=(document.getElementById('quant{{item.id}}').style.display == 'none')?'block' :'none'">
+                    <p>{{item.item}}</p>
+                    <input type="number" name="quant{{item.id}}" id="quant{{item.id}}" style="display: none;" placeholder="Quantity" class="quant">
+                </div>
+                <!-- <script>
+                    let checkbox = document.getElementById('{{item.id}}')
+                    if (checkbox.checked){
+                        document.getElementById('quant{{item.id}}').style.display='block'
+                    }
+                </script> -->
             {% endfor %}
-            <input type="submit" value="Add Items">
+            <input type="submit" value="Add Items" class="input">
         </form>
+
+        
 
         <table id="menu" style="display:none;">
             <tr>

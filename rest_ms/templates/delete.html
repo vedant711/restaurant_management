@@ -11,13 +11,19 @@
 </head>
 <body>
     <form action="deleteitems/{{table.table}}" method="post">
-        <h1>Delete Items for Table {{table.table}}</h1>
+        <h1>Edit Items for Table {{table.table}}</h1>
         {% for message in messages %}
         <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
         {% endfor %}
         {% csrf_token %}
-        {% for item in order %}
-            <div style="display: flex; width: 100%;" class="check"><input type="checkbox" name="items" id="" value="{{item.id}}"><p>{{item.item}}</p></div>
+        {% for order,quant in zipped %}
+        
+
+        <div style="display: flex; width: 100%; margin-top: 10px;">
+            <input type="checkbox" name="items" id="{{order.id}}" value="{{order.id}}" onclick="document.getElementById('quant{{order.id}}').style.display=(document.getElementById('quant{{order.id}}').style.display == 'none')?'block' :'none'">
+            <p>{{order.item}}</p>
+            <input type="number" name="quant{{order.id}}" id="quant{{order.id}}" style="display: none;" placeholder="Quantity" class="quant" value="{{quant}}">
+        </div>
         {% endfor %}
         <input type="submit" value="Delete Items">
     </form>

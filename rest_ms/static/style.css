@@ -93,7 +93,16 @@ button.ghost {
 	margin-bottom: 10%;
 }
 
-.container input {
+.quant {
+	background-color: #eee;
+	border: none;
+	padding: 0px 5px;
+	margin: 0px 0;
+	width: 50px;
+	margin-left: 20px;
+}
+
+.container .input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
@@ -173,3 +182,4 @@ input[type=checkbox] {
 	padding-bottom: 15px;
 
 }
+
