@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'delete.css' %}" type="text/css">
+
+    <title>Document</title>
+</head>
+<body>
+    <form action="adtable/{{table.table}}" method="post">
+        <h1>Delete Items for Table {{table.table}}</h1>
+        {% for message in messages %}
+        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+        {% csrf_token %}
+        {% for item in menu %}
+            <div style="display: flex; width: 100%;" class="check"><input type="checkbox" name="add" id="" value="{{item.id}}"><p>{{item.item}}</p></div>
+        {% endfor %}
+        <input type="submit" value="Add Items">
+    </form>
+</body>
+</html>
